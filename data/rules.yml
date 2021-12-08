@@ -1,0 +1,234 @@
+version: "2.0"
+
+rules:
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+####################################################################################
+# First SMS for engaging new lead
+####################################################################################
+- rule: sends first SMS to new Lead
+  steps:
+  - intent: send_first_SMS
+  - action: first_SMS
+  
+################################## CALL ###################################################
+- rule: user chooses phone call for communication 
+  steps:
+  - intent: phone_call
+  - action: delay_call_SMS
+
+- rule: Trigger call_SMS for call_trigger
+  steps:
+   - intent: call_trigger
+   - action: call_SMS
+
+####################################################################################
+#################################### TEXT ################################################
+####################################################################################
+- rule: user chooses text_message for communication 
+  steps:
+  - intent: text_message
+  - action: delay_second_SMS
+
+- rule: Trigger second  SMS for second  trigger
+  steps:
+  - intent: second_trigger
+  - action: second_SMS
+
+################################### STOP CONVERSATION ###################################################
+- rule: forgets the lead and stops conversation 1
+  steps:
+  - action: text_message
+  - intent: deny
+  #- action: utter_forget_lead
+
+- rule: forgets the lead and stops conversation 2
+  steps:
+  - action: utter_text_or_call
+  - intent: deny
+  #- action: utter_forget_lead
+
+####################################################################################
+# ############################### Follow up rule for reminder for first SMS(no RESPONSE)
+####################################################################################
+
+- rule: if leads responds YES then ask "text or call"
+  steps:
+  #- intent: send_first_SMS_follow_up
+  - action: first_SMS_follow_up
+  - intent: affirm
+  - action: utter_text_or_call
+
+- rule: if leads declines(NO) to proceed with SSD
+  steps:
+  #- intent: send_first_SMS_follow_up
+  - action: first_SMS_follow_up
+  - intent: deny
+  #- action: utter_forget_lead
+
+- rule: second case, if lead chooses text
+  steps:
+  #- intent: send_first_SMS_follow_up
+  - action: first_SMS_follow_up
+  - intent: text_message
+  - action: delay_second_SMS
+
+- rule: second case, if lead chooses phone call
+  steps:
+  #- intent: send_first_SMS_follow_up
+  - action: first_SMS_follow_up
+  - intent: phone_call
+  - action: delay_call_SMS
+
+- rule: first reminder from first_SMS Triggers the sequence of follow up messages 
+  steps:
+  #- intent: send_first_SMS_follow_up
+  - intent: first_reminder
+  - action: first_SMS_follow_up
+
+- rule: next morning reminder from first_SMS_follow_up Triggers second_SMS_follow_up
+  steps:
+  #- intent: send_first_SMS_follow_up
+  - intent: next_morning_reminder
+  - action: second_SMS_follow_up
+
+- rule: afternoon_reminder from second_SMS_follow_up Triggers third_SMS_follow_up
+  steps:
+  #- intent: send_first_SMS_follow_up
+  - intent: afternoon_reminder
+  - action: third_SMS_follow_up
+
+- rule: two_days_reminder from third_SMS_follow_up Triggers third_SMS_follow_up
+  steps:
+  #- intent: send_first_SMS_follow_up
+  - intent: two_days_reminder
+  - action: fourth_SMS_follow_up
+
+####################################################################################
+# Other SMS (stall out of conversation)
+####################################################################################
+- rule: Lead affirms to still be interested(might want to connect to first_SMS)
+  steps:
+  #- intent: send_other_SMS_follow_up
+  - action: other_SMS_follow_up
+  - intent: affirm
+  - action: utter_text_or_call
+
+- rule: Lead declines to continue with conversation and SSD
+  steps:
+  #- intent: send_other_SMS_follow_up
+  - action: other_SMS_follow_up
+  - intent: deny
+  #- action: utter_forget_lead
+
+- rule: External reminder Triggers the sequence follow up if lead stalls during conversation 
+  steps:
+  - intent: stall_out_reminder
+  - action: other_SMS_follow_up
+
+####################################################################################
+####################################################################################
+########### DELAY BOT RESPONSE
+####################################################################################
+####################################################################################
+# normall conversation rules
+####################################################################################
+- rule: (has an attorney) (stop text conversation)
+  steps:
+  - action: second_SMS
+  - intent: affirm
+  - action: delay_fourth_SMS
+
+- rule: Trigger fourth_SMS for fourth_trigger
+  steps:
+  - intent: fourth_trigger
+  - action: fourth_SMS
+
+- rule: (has an attorney) (stop text conversation)
+  steps:
+  - action: second_SMS
+  - intent: deny
+  - action: delay_third_SMS
+
+- rule: Trigger third_SMS for third_trigger
+  steps:
+  - intent: third_trigger
+  - action: third_SMS
+
+- rule: text message continuation 4
+  steps:
+  - action: third_SMS
+  - intent: deny
+  - action: delay_sixth_SMS
+
+- rule: Trigger sixth_SMS for sixth_trigger
+  steps:
+  - intent: sixth_trigger
+  - action: sixth_SMS
+
+- rule: text message continuation 3
+  steps:
+  - action: third_SMS
+  - intent: affirm
+  - action: delay_fifth_SMS
+
+- rule: Trigger fifth_SMS for five_trigger
+  steps:
+  - intent: fifth_trigger
+  - action: fifth_SMS
+
+- rule: text message continuation 5
+  steps:
+  - action: fifth_SMS
+  - intent: affirm
+  - action: delay_seventh_SMS
+
+- rule: Trigger seventh_SMS for seventh_trigger
+  steps:
+  - intent: seventh_trigger
+  - action: seventh_SMS
+
+- rule: text message continuation 6
+  steps:
+  - action: fifth_SMS
+  - intent: deny
+  - action: delay_eighth_SMS
+
+- rule: Trigger eighth_SMS for eighth_trigger
+  steps:
+  - intent: eighth_trigger
+  - action: eighth_SMS
+
+
+- rule: scheduling call call appointement flow 
+  steps:
+  - action: eighth_SMS
+  - intent: call_appointement
+  #- action: utter_call_schedule
+  - action: action_call_schedule
+
+- rule: scheduling call call appointement rule
+  steps:
+  - intent: call_appointement
+  #- action: utter_call_schedule
+  - action: action_call_schedule
+
+##########################################################################################
+
+- rule: answer out of scope 1
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+
+- rule: answer out of scope 2
+  steps:
+  - intent: nlu_fallback
+  - action: utter_out_of_scope

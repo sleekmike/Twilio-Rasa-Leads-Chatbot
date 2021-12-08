@@ -1,0 +1,235 @@
+version: '2.0'
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 0
+  carry_over_slots_to_new_session: true
+intents:
+- greet:
+    use_entities: true
+- goodbye:
+    use_entities: true
+- affirm:
+    use_entities: true
+- deny:
+    use_entities: true
+- thank:
+    use_entities: true
+- help:
+    use_entities: true
+- mood_great:
+    use_entities: true
+- mood_unhappy:
+    use_entities: true
+- bot_challenge:
+    use_entities: true
+- nlu_fallback:
+    use_entities: true
+- text_message:
+    use_entities: true
+- out_of_scope:
+    use_entities: true
+- phone_call:
+    use_entities: true
+- boring:
+    use_entities: []
+- chatbot:
+    use_entities: []
+- greetings.goodevening:
+    use_entities: []
+- greetings.goodmorning:
+    use_entities: []
+- greetings.goodnight:
+    use_entities: []
+- greetings.how_are_you:
+    use_entities: []
+- greetings.nice_to_meet_you:
+    use_entities: []
+- greetings.nice_to_see_you:
+    use_entities: []
+- greetings.nice_to_talk_to_you:
+    use_entities: []
+- vile_message:
+    use_entities: true
+- call_trigger:
+    use_entities: true
+- second_trigger:
+    use_entities: true
+- third_trigger:
+    use_entities: true
+- fourth_trigger:
+    use_entities: true
+- fifth_trigger:
+    use_entities: true
+- sixth_trigger:
+    use_entities: true
+- seventh_trigger:
+    use_entities: true
+- eighth_trigger:
+    use_entities: true
+- send_first_SMS:
+    use_entities: true
+- send_other_SMS_follow_up:
+    use_entities: true
+- send_first_SMS_follow_up:
+    use_entities: true
+- call_appointement:
+    use_entities: true
+- first_reminder:
+    use_entities: true
+- next_morning_reminder:
+    use_entities: true
+- afternoon_reminder:
+    use_entities: true
+- two_days_reminder:
+    use_entities: true
+- stall_out_reminder:
+    use_entities: true
+- lonely:
+    use_entities: true
+entities:
+- lead_name
+- lead_number
+slots:
+  lead_name:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  lead_number:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+responses:
+  utter_greet:
+  - text: Hey! How are you?
+  utter_cheer_up:
+  - image: https://i.imgur.com/nGF1K8f.jpg
+    text: 'Here is something to cheer you up:'
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_welcome:
+  - text: You're welcome!
+  utter_default:
+  - text: I didn't quite understand that. Could you rephrase?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Goodbye!
+  utter_annoying:
+  - text: I'll do my best not to annoy you in the future.
+  - text: I'll try not to annoy you.
+  - text: I don't mean to. I'll ask my developers to make me less annoying.
+  - text: I didn't mean to. I'll do my best to stop that.
+  utter_help:
+  - text: How can I help you please?
+  utter_iamabot:
+  - text: Why do you think I am a bot?
+  utter_boring:
+  - text: I'm sorry. I'll try to be made more charming.
+  - text: I don't mean to be. I'll to work on my humor so I can be more amusing.
+  - text: I can let my developers know so they can make me fun.
+  - text: I'm sorry. I'll request to be made more charming.
+  - text: I don't mean to be. I'll ask my developers to work on making me more amusing.
+  utter_greetings.goodevening:
+  - text: How is your day going?
+  - text: How's the day treating you so far?
+  - text: How's your day been?
+  utter_greetings.goodmorning:
+  - text: How are you this morning?
+  - text: How's the morning treating you so far?
+  - text: Good morning! How are you today?
+  utter_greetings.goodnight:
+  - text: Sleep tight!
+  - text: Have a good one!
+  - text: Talk to you soon!
+  utter_greetings.how_are_you:
+  - text: Doing great, thanks!
+  - text: I'm doing very well. Thanks!
+  - text: Feeling wonderful!
+  - text: Wonderful! Thanks for asking.
+  utter_greetings.nice_to_meet_you:
+  - text: It's nice meeting you, too.
+  - text: Likewise. I'm looking forward to helping you out.
+  - text: Nice meeting you, as well.
+  - text: The pleasure is mine.
+  utter_greetings.nice_to_see_you:
+  - text: Likewise!
+  - text: So glad we meet again!
+  - text: Same here. I was starting to miss you.
+  utter_greetings.nice_to_talk_to_you:
+  - text: It sure was. We can chat again anytime.
+  - text: I enjoy talking to you, too.
+  - text: You know I'm here to talk anytime.
+  utter_chatbot:
+  - text: That's me. I chat, therefore I am.
+  - text: Indeed I am. I'll be here whenever you need me.
+  utter_out_of_scope:
+  - text: Sorry for the confusion--I didn’t quite catch that. Would you prefer to chat via text message or quick so that I can assist you?
+  utter_one:
+  - text: Hi John! Alex here with Social Security Disability Helpers. We just received your inquiry online. Would you prefer to chat via text message or should I give you a quick call so that I can assist you?
+  utter_two:
+  - text: No problem, texting works. Are you currently working with an attorney to help you?
+  utter_three:
+  - text: Got it! Just one more question. Are you currently receiving treatment from a Doctor?
+  utter_four:
+  - text: I am sorry but we can only help people who are not working with an attorney already. I wish you the best of luck.
+  utter_five:
+  - text: Great. I have a few questions so I can get you connected. Is now a good time for a call?
+  utter_six:
+  - text: I am sorry but we can only help people who are currently receiving treatment from a doctor. I wish you the best of luck.
+  utter_seven:
+  - text: Ok great! We will give you a call within a few minutes.
+  utter_eight:
+  - text: I understand. When is a good time for us to call you about your case?
+  utter_text_or_call:
+  - text: Would you prefer to chat via text message or should I give you a quick call so that I can assist you?
+  utter_forget_lead:
+  - text: Okay Got it, That would be all. Thank you
+  utter_vile_message:
+  - text: Hey please no need to get tense here.
+  - text: Never mind mate
+  - text: Sorry wont bother again.
+  - text: Peace
+  - text: Shalom
+  - text: Its all good
+  - text: No qualms
+actions:
+- utter_vile_message
+- utter_one
+- utter_two
+- utter_three
+- utter_four
+- utter_five
+- utter_six
+- utter_seven
+- utter_eight
+- other_SMS_follow_up
+- first_SMS_follow_up
+- first_SMS
+- delay_second_SMS
+- second_SMS
+- delay_third_SMS
+- third_SMS
+- delay_fourth_SMS
+- fourth_SMS
+- delay_fifth_SMS
+- fifth_SMS
+- delay_sixth_SMS
+- sixth_SMS
+- delay_seventh_SMS
+- seventh_SMS
+- delay_eighth_SMS
+- eighth_SMS
+- delay_call_SMS
+- call_SMS
+- utter_text_or_call
+- utter_forget_lead
+- action_call_schedule
+- second_SMS_follow_up
+- third_SMS_follow_up
+- fourth_SMS_follow_up
+- text_message
+forms: {}
+e2e_actions: []

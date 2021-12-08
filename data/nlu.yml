@@ -1,0 +1,592 @@
+version: "2.0"
+
+nlu:
+####################################################################################
+#################################### CHIT-CHAT INTENTS ##################################
+####################################################################################
+
+
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+    - I am here
+
+- intent: goodbye
+  examples: |
+    - good afternoon
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - all right 
+    - alright
+    - very well
+    - of course
+    - by all means
+    - sure
+    - certainly
+    - I am interested
+    - absolutely
+    - indeed
+    - affirmative
+    - in the affirmative
+    - agreed
+    - roger
+    - aye 
+    - aye aye 
+    - yeah 
+    - yep
+    - yah 
+    - yup 
+    - uh-huh
+    - okay
+    - OK
+    - okey-dockey
+    - okey-doke 
+    - righto
+    - surely
+    - achcha
+    - righty-ho 
+
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+    - Im not sure
+    - naa
+    - negative 
+    - I am not interested
+    - not interested
+    - no need 
+    - I dont need that.
+    - n
+    - stop 
+    - STOP 
+    - NO 
+    - No 
+
+
+- intent: thank
+  examples: |
+    - thanks!
+    - thank you
+    - thanks a lot
+    - great thanks
+    - appreciate it
+    - cool thanks
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+    - you are a bot right
+    - aren't you a bot
+
+- intent: help
+  examples: |
+    - I need help
+    - what can you help me with
+    - can you help me
+    - what can you do
+    - I need some help
+    - help me
+    - can you please help me
+
+- intent: out_of_scope
+  examples: |
+    - what is the square root of 5
+    - I want to know the weather
+    - what is the meaning of life.
+    - Fridge Isn't Running
+    - my tv isn't working
+    - I want a pizza
+    - my washing machine isn't working
+    - what year is it
+    - order a pizza
+    - I want to order a pizza
+    - what is the weather today
+    - what is the weather
+    - arrhrhr
+    - fuck you 
+    - iiiiiiiiiiiiiiiii
+    - jjjjjjjjjjjjjjjjj
+    - what/
+    - /
+    - ?
+    - +
+    - what?
+    - ???
+
+- intent: boring
+  examples: |
+    - you are boring
+    - you're boring
+    - how boring you are
+    - you're really boring
+    - you're incredibly boring
+    - You're boring me
+    - you are very boring
+    - i find you very boring man
+    - you're really boring me
+    - i'm bored of you
+    - you are not interesting
+    - i find you boring
+    - you're boring everyone
+    - I'm extremely bored because of you
+    - Im bored of you
+    - I get really bored of you man
+    - It's boring
+    - You look bored
+    - Your answers are terribly boring
+    - I was bored with your speech
+    - soo bored
+    - that was boring
+    - I'm bored
+    - bored
+    - boring
+    - I am getting bored
+    - Staying at home is boring
+    - very boring
+    - it bores me
+    - i had a slow day
+    - i am very bored
+    - Im kinda bored today
+    - I've never been more bored
+    - I was bored
+    - It's boring
+    - This is boring
+    - We're all bored
+    - It's very boring
+    - I'm already bored
+    - I'm bored out of my mind
+
+- intent: chatbot
+  examples: |
+    - you are chatbot
+    - you are a bot
+    - are you a chatbot
+    - are you a bot
+    - are you just a bot
+    - are you a robot
+    - are you a program
+    - you're a robot
+    - you're an AI
+    - are you artificially intelligent?
+    - are you an AI?
+    - you are a program
+    - you are just a bot
+    - you are a conversational AI
+    - glad you're real
+    - are you a real person?
+    - are you a real human?
+    - you are a real person
+    - you are not real
+    - are you real?
+
+- intent: greetings.goodevening
+  examples: |
+    - good evening
+    - good evening to you
+    - hey good evening
+    - hello good evening
+    - evening
+    - good evening there
+    - have an awesome evening
+    - happy evening
+    - good evening there buddy
+    - have a good evening
+    - enjoy the evening
+
+- intent: greetings.goodmorning
+  examples: |
+    - GM
+    - good morning
+    - good morning to you
+    - hello good morning
+    - have a nice morning
+    - have a great morning
+    - morning
+    - good morning there
+    - top of the morning to you
+    - a good morning
+    - hi good morning
+    - and a good morning to you
+    - good morning too
+
+- intent: greetings.goodnight
+  examples: |
+    - GN
+    - sweet dreams
+    - good night
+    - have a good night
+    - good night to you
+    - thank you good night
+    - bye good night
+    - good night bye
+    - good good night
+    - good night for now
+    - goodnight
+    - night
+    - thanks goodnight
+    - good night see you tomorrow
+    - alright goodnight
+    - good tonight
+    - okay have a good night
+
+- intent: greetings.how_are_you
+  examples: |
+    - how is your morning so far
+    - how are you getting on
+    - how's your day going
+    - how are you?
+    - is everything all right
+    - how are you doing?
+    - how are the things going
+    - are you alright
+    - are you okay?
+    - how are you feeling
+    - how are you going?
+    - is everything okay
+    - how are you today?
+    - how do you do?
+    - how do you feel?
+    - how have you been?
+    - how is it going?
+    - how is your day
+    - how is your day going
+    - how is your evening
+    - how was your day
+    - are you having a good day
+    - hope your day is going well
+    - hope you re having a pleasant evening
+    - how's life?
+    - I'm fine and you
+    - how is your life
+    - how has your day been
+    - how is your morning going
+    - how has your day been going
+    - how about you?
+    - how is your day being
+    - how is your day going on
+    - how your day is going
+    - what was your day like
+    - what about your day
+    - how's your day
+    - how are you doing this morning
+    - how are you
+
+- intent: greetings.nice_to_meet_you
+  examples: |
+    - nice to meet you
+    - it was nice meeting you
+    - it was very nice to meet you
+    - good to know each other
+    - glad to meet you
+    - nice meeting you
+    - nice to meet you too
+    - pleased to meet you
+    - pleasure to meet you
+    - pleasure to meet you too
+    - happy to meet you
+    - It’s a pleasure to meet you again
+    - It’s very nice to meet you
+    - Lovely to meet you
+    - How wonderful to meet you
+    - It was lovely meeting you
+    - It’s been a pleasure meeting you
+    - I’ve enjoyed meeting you
+    - Great interacting with you
+    - I had a great time or meeting
+
+- intent: greetings.nice_to_see_you
+  examples: |
+    - it's nice to see you
+    - lovely to see you
+    - I'm glad to see you
+    - great to see you
+    - it's good to see you
+    - glad to see you
+    - how good it is to see you
+    - always a pleasure to see you
+    - nice to see you
+    - good to see you
+    - great to see you again
+    - great to see you too
+    - I am glad to see you again
+    - nice to see you again
+    - good to see you again
+    - it's good to see you too
+    - It was great catching up with u
+    - I'm really pleased to see u again
+    - I’m delighted to see you again
+    - Great seeing u
+
+- intent: greetings.nice_to_talk_to_you
+  examples: |
+    - it's been so nice to talk to you
+    - it's been a pleasure talking to you
+    - nice to talk to you
+    - it's nice to talk to you
+    - nice talking to you
+    - it is nice talking to you
+    - how nice it is to talk to you
+    - it was great chatting with you
+    - nice to talk to you again
+    - It was nice speaking with you
+    - It was great to talk to you
+    - nice chatting with you
+    - pleased to talk to you
+    - pleasure to talk
+    - It's been a pleasure talking to u
+    - intent:greetings.whatsup
+    - what is on your mind?
+    - what's happened
+    - what is up
+    - what's up
+    - whazzup
+    - sup?
+    - good what's up
+    - I said what's up
+    - then what's up
+    - what's shaking
+    - wassup
+    - what are you doing?
+    - what is going on
+    - what is happening
+    - what's cracking
+    - what's cooking
+    - hey what's up
+    - what's up today
+    - oh What happened?
+    - What are you upto?
+    - hey buddy wassup
+    - sup then
+    - so wassup
+    - buddy sup
+    - What are you doing?
+    - what is up with you these days?
+    - What you upto?
+    - then?
+    - wassup yo
+    - sup yo
+    - wassap yo
+ 
+
+- intent: lonely
+  examples: |
+    - I am lonely
+    - I'm very lonely
+    - I'm so lonely
+    - I'm really lonely
+    - I am feeling lonely
+    - I feel lonely
+    - I am a loner
+    - I don't have any company
+    - I don't have anyone else
+    - I'm always alone
+    - I'm alone
+    - am all alone
+    - I live alone
+    - I'm all alone
+    - I've gotten used to living alone
+    - I think I've been living alone too long
+    - One of the disadvantages of living alone is that you have no one to talk to
+    - I am still alone
+    - i lives in this city all alone
+    - I am used to living alone
+
+
+####################################################################################
+#################################### MAIN INTENTS ##################################
+####################################################################################
+
+- intent: text_message
+  examples: |
+    - text message please
+    - text
+    - test
+    - sms
+    - chat
+    - I prefer to chat
+    - text works
+    - message
+    - messaging works 
+    - text works i guess
+    - lets chat 
+    - messaging
+    - chatting
+    - texting works
+    - sms message
+    - text is fine 
+    - sms or chat
+    - text me 
+    - lets text
+    - lets chat
+    - i need help with my ssd case 
+    - I am partially disabled I need an attorney to help with my case
+    - I need attorney to help me with my SSD case
+
+- intent: phone_call
+  examples: |
+    - call please
+    - call works
+    - call
+    - i would prefer call please
+    - phone calls would be better
+    - I would prefer to speak
+    - speaking to a human agent would be nice 
+    - phone calls
+    - voice chat
+    - lets connect now
+    - speak
+    - lets talk 
+    - lets speak
+    - voice calls
+    - lets do voice
+    - can you please call me
+    - hit me up
+    - ring me 
+    - buzz me 
+    - cal
+    - phone me 
+    - dial me number
+    - please call mua 
+    - lets talk now 
+    - lets speak immediately
+    - I prefer to talk 
+    - i want to speak to an agent
+    - please call me instead
+    - please dial my number
+    - let's have a call please
+    - I want to speak with attorney
+    - i want to speak w an attorney
+    - i want to talk to an attorney now
+    - lets talk now 
+    - I want to speak with a lawyer
+    - can i speak with an attorney now 
+    - I want to talk to an attorney 
+    - can I speak with a DA?
+    
+
+- intent: call_appointement
+  examples: |
+    - tomorrow 
+    - on monday
+    - next week
+    - next month 
+    - in the evening 
+    - by 8pm 
+    - by noon 
+    - you can call right now
+    - right now
+    - ok lets talk now
+    - 8 tomorrow
+    - next tuesday 
+    - maybe this weekend
+    - in 2 hours time 
+    - in 10 minnutes
+    - by 5 
+    - 2 days from now
+    - call me after working hours
+    - lets talk in 20 minnutes time
+    - I will call you by 4 
+    - tomorrow morning would be great
+    - 5 hours?
+    - by midnght
+    - by mid-day
+    - call me on friday
+    - lets talk tomorrow please
+    - why not in the evening
+    - call me at 3pm 
+    - lets talk later
+    - on saturday maybe?
+    - call me later
+    - I will call you later ok
+    - i will can you when I have time 
+    - when I am less busy I will call you
+
+
+- intent: vile_message
+  examples: |
+    - fuck off
+    - get lost
+    - bitch
+    - asshole
+    - crazy
+    - are you mad 
+    - are you stupid
+    - you frauds 
+    - fool
+    - call
+    - i would prefer you to get out
+    - gtfo
+    - fffffuckkk offf

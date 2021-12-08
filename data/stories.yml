@@ -1,0 +1,238 @@
+version: "2.0"
+
+####################################################################################
+# chit-chat
+####################################################################################
+stories:
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- story: say goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  #- intent: mood_unhappy
+  #- action: utter_cheer_up
+  #- action: utter_did_that_help
+  #- intent: affirm
+  #- action: utter_happy
+
+#- story: sad path 2
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - intent: mood_unhappy
+#  - action: utter_cheer_up
+#  - action: utter_did_that_help
+#  - intent: deny
+#  - action: utter_goodbye
+
+#- story : welcome message
+#  steps:
+#  - intent: /get_started
+#  - action: utter_greet
+#  - action: utter_help
+
+- story: answer out of scope 1
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+
+- story: answer out of scope 2
+  steps:
+  - intent: nlu_fallback
+  - action: utter_out_of_scope
+
+- story: give help
+  steps:
+  - intent: help
+  - action: utter_help
+
+- story: chatbot
+  steps:
+  - intent: chatbot
+  - action: utter_chatbot
+
+##- story: emotions.wow
+#  steps:
+#  - intent: emotions.wow
+#  - action: utter_emotions.wow
+
+- story: vile_message
+  steps:
+  - intent: vile_message
+  - action: utter_vile_message
+
+- story: thank
+  steps:
+  - intent: thank
+  - action: utter_welcome
+
+- story: greet + give info
+  steps:
+  - intent: help
+  #- action: utter_greet
+  - action: utter_help
+
+- story: greetings.goodevening
+  steps:
+  - intent: greetings.goodevening
+  - action: utter_greetings.goodevening
+
+- story: greetings.goodmorning
+  steps:
+  - intent: greetings.goodmorning
+  - action: utter_greetings.goodmorning
+
+- story: greetings.goodnight
+  steps:
+  - intent: greetings.goodnight
+  - action: utter_greetings.goodnight
+
+- story: greetings.how_are_you
+  steps:
+  - intent: greetings.how_are_you
+  - action: utter_greetings.how_are_you
+
+- story: greetings.nice_to_meet_you
+  steps:
+  - intent: greetings.nice_to_meet_you
+  - action: utter_greetings.nice_to_meet_you
+
+- story: greetings.nice_to_see_you
+  steps:
+  - intent: greetings.nice_to_see_you
+  - action: utter_greetings.nice_to_see_you
+
+- story: greetings.nice_to_talk_to_you
+  steps:
+  - intent: greetings.nice_to_talk_to_you
+  - action: utter_greetings.nice_to_talk_to_you
+
+- story: boring
+  steps:
+  - intent: boring
+  - action: utter_boring
+
+####################################################################################
+# Follow up rule fror reminder for first SMS(no RESPONSE)
+####################################################################################
+
+- story: Follow up rule fror reminder for first SMS(no RESPONSE)(still interested)(choose text)
+  steps:
+  #- intent: send_first_SMS_follow_up
+  - intent: first_reminder
+  - action: first_SMS_follow_up
+  - intent: affirm
+  - action: utter_text_or_call
+  - intent: text_message
+  - action: delay_second_SMS
+
+- story: Follow up rule fror reminder for first SMS(no RESPONSE)(still interested)(choose call)
+  steps:
+  #- intent: send_first_SMS_follow_up
+  - intent: first_reminder
+  - action: first_SMS_follow_up
+  - intent: affirm
+  - action: utter_text_or_call
+  - intent: phone_call
+  - action: delay_call_SMS
+  
+- story: Follow up rule for reminder for first SMS(no RESPONSE)(not interested)
+  steps:
+  #- intent: send_first_SMS_follow_up
+  - intent: first_reminder
+  - action: first_SMS_follow_up
+  - intent: deny
+  #- action: utter_forget_lead
+  
+- story: Follow up rule fror reminder for first SMS(no RESPONSE)(interested, wants text)
+  steps:
+  #- intent: send_first_SMS_follow_up
+  - intent: first_reminder
+  - action: first_SMS_follow_up
+  - intent: text_message
+  - action: delay_second_SMS
+  
+
+- story: Follow up rule for reminder for first SMS(no RESPONSE)(interested, wants call)
+  steps:
+  - intent: first_reminder
+  #- intent: send_first_SMS_follow_up
+  - action: first_SMS_follow_up
+  - intent: phone_call
+  - action: delay_call_SMS
+
+####################################################################################
+# Other SMS (stall out of conversation)
+####################################################################################
+
+- story: Lead affirms to still be interested(connect to first_SMS)
+  steps:
+  - intent: stall_out_reminder
+  - action: other_SMS_follow_up
+  - intent: affirm
+  - action: utter_text_or_call
+
+- story: Lead declines to continue with conversation and SSD
+  steps:
+  - intent: stall_out_reminder
+  - action: other_SMS_follow_up
+  - intent: deny
+  #- action: utter_forget_lead
+
+####################################################################################
+# normal conversation stories
+####################################################################################
+- story: chooses phone call instead of text, (stop text conversation)
+  steps:
+  - intent: phone_call
+  - action: delay_call_SMS
+
+- story: (has an attorney) (stop text conversation)
+  steps:
+  - intent: text_message
+  - action: delay_second_SMS
+  - intent: affirm
+  - action: delay_fourth_SMS
+
+- story: chooses text message, (doesn't have an attorney), (NOT receving treatment from doctor), (stop  text conversation)
+  steps:
+  - intent: text_message
+  - action: delay_second_SMS
+  - intent: deny
+  - action: delay_third_SMS
+  - intent: deny
+  - action: delay_sixth_SMS
+
+- story: chooses text message or chat, (doesn't have an attorney), (receving treatment from doctor), (call now)
+  steps:
+  - intent: text_message
+  - action: delay_second_SMS
+  - intent: deny
+  - action: delay_third_SMS
+  - intent: affirm
+  - action: delay_fifth_SMS
+  - intent: affirm
+  - action: delay_seventh_SMS
+  #- action: delay_call_SMS
+
+- story: chooses text message or chat, (doesn't have an attorney), (receving treatment from doctor), (schedule call)
+  steps:
+  - intent: text_message
+  - action: delay_second_SMS
+  - intent: deny
+  - action: delay_third_SMS
+  - intent: affirm
+  - action: delay_fifth_SMS
+  - intent: deny
+  - action: delay_eighth_SMS
+  - intent: call_appointement
+  - action: action_call_schedule
